@@ -13,7 +13,7 @@ module.exports = function (rawBoardBuffer, rawTargetBuffer) {
   let boardBuffer = bmp.decode(rawBoardBuffer).data
 
   let len = targetBuffer.byteLength
-  for (let i = 0; i < len-4; i += 4) {
+  for (let i = len-4; i > 0; i -= 4) {
     let val = targetBuffer.readUIntBE(i, 4)
     if (val !== TRANSPARENT) {
       let boardVal = boardBuffer.readUIntBE(i, 4)
